@@ -1,79 +1,66 @@
-
 // Module
 
-angular.module('angularWP', ['ngRoute', 'ngResource'])
+angular.module('angularWP', ['ngRoute', 'ngResource']);
+// Controllers
 
+angular.module('angularWP')
 
+// Controllers for views
+.controller('frontpageController', ['$http', '$resource', '$filter', '$routeParams', function($http, $resource, $filter, $routeParams) {
+	
+}])
 
+.controller('indexController', ['$http', '$resource', '$filter', '$routeParams', function($http, $resource, $filter, $routeParams) {
+	
+}])
+
+.controller('pageController', ['$http', '$resource', '$filter', '$routeParams', function($http, $resource, $filter, $routeParams) {
+	
+}])
+
+.controller('postController', ['$http', '$resource', '$filter', '$routeParams', function($http, $resource, $filter, $routeParams) {
+	
+}]);
 // Routes 
 
-.config(function($routeProvider){
+angular.module('angularWP').config(function($routeProvider) {
 
 	$routeProvider
 
 	.when('/', {
 		templateUrl: 'wp-content/themes/angularwp/templates/ngwp-front-page.php',
 		controller: 'frontpageController'
-	})	
-	.when('/posts', {
+	})
+	.when('/index', {
 		templateUrl: 'wp-content/themes/angularwp/templates/ngwp-index.php',
 		controller: 'indexController'
 	})
-})
-
-
-// Services 
-
-
-
-// Controllers
-
-.controller('frontpageController', ['$scope', function($scope){
-	
-
-
-}])
-
-.controller('indexController', ['$http', '$resource', '$filter', '$routeParams', function($http, $resource, $filter, $routeParams){
-	var vm = this;
-	var apiCallFunction;
-
-	vm.posts = [];
-	vm.loaded = false;
-	vm.subtitle = '';
-
-
-    this.setMetadata = function(metadata) {
-        title = metadata.title ? metadata.title : defaultTitle;
-        description = metadata.description ? metadata.description : defaultDescription;
-    };
-
-    this.getMetadata = function() {
-        return {
-            title: title,
-            description: description
-        };
-    };
-
-	apiCallFunction.then(function(posts) {
-		vm.posts = posts;
-		vm.loaded = true;
+	.when('/post/:id/:title', {
+		templateUrl: 'wp-content/themes/angularwp/templates/ngwp-single.php',
+		controller: 'postController'
+	})
+	.when('/page/:id/:title', {
+		templateUrl: 'wp-content/themes/angularwp/templates/ngwp-page.php',
+		controller: 'pageController'
 	});
+});
+// Services (or Factories)
 
-	vm.scrollToTop = function() {
-		$anchorScroll();
-	};
+angular.module('angularWP')
 
-	vm.search = function(term) {
-		$state.go('postsBySearch', { searchTerm: term });
-	};
-
-
+// Factory for returning posts for getting posts 
+.factory('PostService', ['$http', function($http) {
 	function getAllPosts() {
-		return getData('posts?filter[category_name]=post');
+		return {};
 	}
 
+	function getPost(id) {
+		return {};
+	}
+
+	function fetchFromAPI(api_url) {
+		return {};
+	}
+
+	return {};
 }]);
-
-
-
