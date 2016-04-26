@@ -3,18 +3,32 @@
 angular.module('angularWP')
 
 // Factory for returning posts for getting posts 
-.factory('PostService', ['$http', function($http) {
+.factory('PostService', ['$http', '$log', function($http, $log) {
 	function getAllPosts() {
-		return {};
+		return fetchFromAPI('posts');
 	}
 
-	function getPost(id) {
-		return {};
+	function getSinglePost(id) {
+		return fetchFromAPI('posts/' + id);
 	}
 
-	function fetchFromAPI(api_url) {
-		return {};
+	function fetchFromAPI(url) {
+		return $http.get('wp-json/wp/v2/' + url, { cache: true }).then(function(data){
+			// $log.log(data);
+			// many items
+			if (data.list instanceof Array) {
+				var items = data.list.map(function(item) { return item; });
+				$log.log(items);
+			} else { // one item
+				$log.log(data);
+				return data;
+			}
+			
+		});
 	}
 
-	return {};
+	return {
+		getAllPosts: getAllPosts,
+		getSinglePost: getSinglePost
+	};
 }]);

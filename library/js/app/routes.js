@@ -6,18 +6,22 @@ angular.module('angularWP').config(function($routeProvider) {
 
 	.when('/', {
 		templateUrl: 'wp-content/themes/angularwp/templates/ngwp-front-page.php',
-		controller: 'frontpageController'
+		controller: 'frontpageController',
+		controllerAs: 'vm'
 	})
 	.when('/index', {
 		templateUrl: 'wp-content/themes/angularwp/templates/ngwp-index.php',
-		controller: 'indexController'
+		controller: 'indexController',
+		controllerAs: 'vm'
 	})
 	.when('/post/:id/:title', {
 		templateUrl: 'wp-content/themes/angularwp/templates/ngwp-single.php',
-		controller: 'postController'
+		controller: 'postController',
+		controllerAs: 'vm'
 	})
 	.when('/page/:id/:title', {
 		templateUrl: 'wp-content/themes/angularwp/templates/ngwp-page.php',
-		controller: 'pageController'
+		controller: 'pageController',
+		controllerAs: 'vm'
 	});
 });
