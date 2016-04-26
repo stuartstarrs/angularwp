@@ -1,7 +1,7 @@
 <div class="row">
 	<ul>
 		<li ng-repeat="post in vm.posts.data">
-			<h2>{{ post.title }}</h2>
+			<a href="#/post/{{ post.id }}/{{ post.slug }}">{{ post.title }}</a>
 		</li>
 	</ul>
 
