@@ -1,13 +1,13 @@
 
 // Module
 
-var angularWP = angular.module('angularWP', ['ngRoute', 'ngResource']);
+angular.module('angularWP', ['ngRoute', 'ngResource'])
 
 
 
 // Routes 
 
-angularWP.config(function($routeProvider){
+.config(function($routeProvider){
 
 	$routeProvider
 
@@ -15,7 +15,19 @@ angularWP.config(function($routeProvider){
 		templateUrl: 'wp-content/themes/angularwp/templates/ngwp-front-page.php',
 		controller: 'frontpageController'
 	})
-});
+	.when('/index', {
+		templateUrl: 'wp-content/themes/angularwp/templates/ngwp-index.php',
+		controller: 'indexController'
+	})
+	.when('/post/:id/:title', {
+		templateUrl: 'wp-content/themes/angularwp/templates/ngwp-single.php',
+		controller: 'postController'
+	})
+	.when('/page/:id/:title', {
+		templateUrl: 'wp-content/themes/angularwp/templates/ngwp-page.php',
+		controller: 'pageController'
+	})
+})
 
 
 // Services 
@@ -24,15 +36,11 @@ angularWP.config(function($routeProvider){
 
 // Controllers
 
-angularWP.controller('frontpageController', ['$scope', function($scope){
+.controller('frontpageController', ['$scope', function($scope){
 	
+}])
 
-
-}]);
-
-angularWP.controller('indexController', ['$scope', '$resource', '$filter', '$routeParams', function($scope, $resource, $filter, $routeParams){
-
-
-
+.controller('indexController', ['$http', '$resource', '$filter', '$routeParams', function($http, $resource, $filter, $routeParams){
+	
 }]);
 
